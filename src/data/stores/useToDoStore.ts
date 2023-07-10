@@ -16,13 +16,7 @@ interface TodoStore {
 }
 
 export const useToDoStore = create<TodoStore>((set, get) => ({
-  tasks: [
-    {
-      id: "testId",
-      title: "testTitle",
-      createdAt: 123123,
-    },
-  ],
+  tasks: [],
   createTask: (title) => {
     const { tasks } = get();
     const newTask = {
