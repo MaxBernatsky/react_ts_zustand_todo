@@ -17,15 +17,16 @@ interface TodoStore {
 
 export const useToDoStore = create<TodoStore>((set, get) => ({
   tasks: [],
-  createTask: (title) => {
-    const { tasks } = get();
-    const newTask = {
-      id: generateId(),
-      title,
-      createdAt: Date.now(),
-    };
-    set({ tasks: [newTask].concat(tasks) });
-  },
+
+  createTask: (title) =>
+    set((state) => {
+      const newTask = {
+        id: generateId(),
+        title,
+        createdAt: Date.now(),
+      };
+      return { tasks: [...state.tasks, newTask] };
+    }),
   updateTask: (id, title) => {
     const { tasks } = get();
     set({
